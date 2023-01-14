@@ -5,7 +5,7 @@
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "newLine": "LF",
-    "outDir": "./esm/",
+    "outDir": "./module/",
     "target": "ES2018",
     "sourceMap": true,
     "declaration": true,

@@ -1,12 +1,18 @@
 # tsconfig-to-dual-package
 
-A simple tool that add package.json({&#34;type&#34;:&#34;commonjs&#34;/&#34;module&#34;}) to TypeScript outDir for dual package.
+A simple tool that add package.json({&#34;type&#34;:&#34;commonjs&#34; or &#34;module&#34;}) to TypeScript outDir for dual package.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install tsconfig-to-dual-package
+    npm install tsconfig-to-dual-package --save-dev
+
+Requirements: This tool depended on `typescript` package for parsing `tsconfig.json` file.
+It means that You need to install `typescript` as dependency in your project.
+
+- PeerDependency:
+  - `typescript`: `*` (any version)
 
 ## Usage
 

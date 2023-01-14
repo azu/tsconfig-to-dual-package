@@ -3,7 +3,18 @@ import path from "node:path";
 import { resolveTsConfig } from "resolve-tsconfig";
 import ts from "typescript";
 
-export const findTsConfig = async ({ cwd }: { cwd: string }) => {
+export const findTsConfig = async ({
+    targetTsConfigFilePaths,
+    cwd
+}: {
+    targetTsConfigFilePaths?: string[];
+    cwd: string;
+}) => {
+    if (targetTsConfigFilePaths && targetTsConfigFilePaths.length >= 0) {
+        return targetTsConfigFilePaths.map((value) => {
+            return path.resolve(cwd, value);
+        });
+    }
     const dirents = await fs.readdir(cwd, { withFileTypes: true });
     // ok: tsconfig.json
     // ok: tsconfig.cjs.json
@@ -12,6 +23,7 @@ export const findTsConfig = async ({ cwd }: { cwd: string }) => {
     // ng: tsconfig.json.cjs
     return dirents
         .filter((dirent) => {
+            // remove non-tsconfig.json
             return path.extname(dirent.name) === ".json" && dirent.name.startsWith("tsconfig");
         })
         .map((dirent) => {
@@ -50,9 +62,15 @@ const getModuleType = (moduleKind: ts.ModuleKind) => {
     }
     throw new Error("Non-support module kind: " + moduleKind);
 };
-export const tsconfigToDualPackages = async ({ cwd }: { cwd: string }) => {
+export const tsconfigToDualPackages = async ({
+    targetTsConfigFilePaths,
+    cwd
+}: {
+    targetTsConfigFilePaths?: string[];
+    cwd: string;
+}) => {
     // search tsconfig*.json
-    const tsconfigFilePaths = await findTsConfig({ cwd });
+    const tsconfigFilePaths = await findTsConfig({ targetTsConfigFilePaths, cwd });
     // load tsconfig.json
     const tsconfigs = await Promise.all(
         tsconfigFilePaths.map(async (tsconfigFilePath) => {

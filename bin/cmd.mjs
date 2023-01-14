@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import * as cli from "../esm/cli.js";
+import * as cli from "../module/cli.js";
 
 cli.run()
     .then(
