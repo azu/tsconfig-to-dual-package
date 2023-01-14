@@ -231,7 +231,7 @@ Also, Node.js documentation describe this behavior as follows
 -  [ ] Write example 
 - Steps
   - Install `tsconfig-to-dual-package`: `npm install --save-dev tsconfig-to-dual-package`
-  - Add `type: module` to package.json via `npm pkg set type=module`
+  - Add `"type": "module"` to package.json via `npm pkg set type=module`
   - Add `tsconfig.json` and `tsconfig.cjs.json`
   - Create `tsconfig.json` and set it to use `module: "esnext"`
   - Create `tsconfig.cjs.json` and set it to use `module: "commonjs"`
