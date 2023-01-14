@@ -206,7 +206,14 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 > ```
 
 
-- [ ] Need to get Node.js Official document about this mechanism
+Also, Node.js documentation describe this behavior as follows
+
+> The nearest parent package.json is defined as the first package.json found when searching in the current folder, that folder's parent, and so on up until a node_modules folder or the volume root is reached.
+> ...
+> If the nearest parent package.json lacks a "type" field, or contains "type": "commonjs", .js files are treated as [CommonJS](https://nodejs.org/api/modules.html). If the volume root is reached and no package.json is found, .js files are treated as [CommonJS](https://nodejs.org/api/modules.html).
+> https://nodejs.org/api/packages.html#type
+
+## Pros and Cons
 
 **Pros**
 
@@ -222,6 +229,40 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 ### What should I do support dual package?
 
 -  [ ] Write example
+  - Steps
+    - Install `tsconfig-to-dual-package`: `npm install --save-dev tsconfig-to-dual-package`
+    - Add `type: module` to package.json via `npm pkg set type=module`
+    - Add `tsconfig.json` and `tsconfig.cjs.json`
+    - Create `tsconfig.json` and set it to use `module: "esnext"`
+    - Create `tsconfig.cjs.json` and set it to use `module: "commonjs"`
+    - Add `tsconfig-to-dual-package` to build script
+      - `"build": "tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package"`
+    - Add `main`/`types`(for backward compatibility)/`files`/`exports` fields to `package.json`
+      - `"files": ["lib/", "module/"]` (lib/ = cjs, module/ = esm)
+      - `main`/`types`/`exports`
+      ```json
+      {
+        "main": "./lib/index.js",
+        "types": "./lib/index.d.ts",
+        "exports": {
+          ".": {
+            "types": "./module/index.d.ts",
+            "import": "./module/index.js",
+            "require": "./lib/index.js",
+            "default": "./module/index.js"
+          },
+          "./package.json": "./package.json"
+        }
+      }
+      ```
+    - Check Check Check
+      - [`npx publint`](https://github.com/bluwy/publint) is helpful
+      - [dependency-check@5](https://github.com/dependency-check-team/dependency-check/releases) is useful
+    - Publish!
+      - `npm publish`
+    - After Check!
+      - [publint](https://publint.dev/)
+      - Load test via require/import 
 
 ## References
 
