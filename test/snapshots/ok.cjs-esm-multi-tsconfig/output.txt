@@ -1,0 +1,8 @@
+cjs/
+  package.json
+esm/
+  package.json
+index.ts
+package.json
+tsconfig.cjs.json
+tsconfig.json

@@ -3,6 +3,20 @@ import path from "node:path";
 import { resolveTsConfig } from "resolve-tsconfig";
 import ts from "typescript";
 
+const formatDiagnostics = (diagnostics: ts.Diagnostic[]): string => {
+    return diagnostics
+        .map((diagnostic) => {
+            if (diagnostic.file) {
+                const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start!);
+                const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+                return `${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`;
+            } else {
+                return ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+            }
+        })
+        .join("\n");
+};
+
 export const findTsConfig = async ({
     targetTsConfigFilePaths,
     cwd
@@ -10,7 +24,7 @@ export const findTsConfig = async ({
     targetTsConfigFilePaths?: string[];
     cwd: string;
 }) => {
-    if (targetTsConfigFilePaths && targetTsConfigFilePaths.length >= 0) {
+    if (targetTsConfigFilePaths && targetTsConfigFilePaths.length > 0) {
         return targetTsConfigFilePaths.map((value) => {
             return path.resolve(cwd, value);
         });
@@ -38,6 +52,11 @@ export const createModuleTypePackage = async ({ cwd, type }: { cwd: string; type
             type
         };
     } catch (e) {
+        console.error("Failed to create package.json", {
+            cwd,
+            type,
+            error: e
+        });
         throw new Error("Failed to read package.json", {
             cause: e
         });
@@ -74,14 +93,21 @@ export const tsconfigToDualPackages = async ({
     // load tsconfig.json
     const tsconfigs = await Promise.all(
         tsconfigFilePaths.map(async (tsconfigFilePath) => {
-            return resolveTsConfig({ filePath: tsconfigFilePath });
+            return {
+                filePath: tsconfigFilePath,
+                tsconfig: await resolveTsConfig({ filePath: tsconfigFilePath })
+            };
         })
     );
     // create package.json for dual package
     const dualPackages = await Promise.all(
-        tsconfigs.map(async (tsconfig) => {
+        tsconfigs.map(async ({ filePath, tsconfig }) => {
             if (tsconfig.diagnostics || !tsconfig.config) {
-                console.error(tsconfig.diagnostics, tsconfig.config);
+                console.error(`Failed to load tsconfig: ${filePath}
+
+${formatDiagnostics(tsconfig.diagnostics)}
+`);
+
                 throw new Error("Failed to parse tsconfig.json");
             }
             if (!tsconfig.config.options.outDir) {
@@ -103,6 +129,7 @@ export const tsconfigToDualPackages = async ({
     await Promise.all(
         dualPackages.map(async (dualPackage) => {
             const { outDir, pkg } = await dualPackage;
+            await fs.mkdir(path.resolve(cwd, outDir), { recursive: true });
             await fs.writeFile(path.resolve(cwd, outDir, "package.json"), JSON.stringify(pkg, null, 2), "utf-8");
         })
     );

@@ -51,7 +51,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "mocha \"test/**/*.ts\"",
+    "test": "mocha",
+    "updateSnapshots": "UPDATE_SNAPSHOT=1 npm run test",
     "watch": "tsc -p . --watch"
   },
   "lint-staged": {

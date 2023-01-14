@@ -16,26 +16,27 @@ const HELP = `
       $ tsconfig-to-dual-package ./config/tsconfig.json
 
 `;
-export const cli = parseArgs({
-    strict: true,
-    allowPositionals: true,
-    options: {
-        cwd: {
-            type: "string",
-            default: process.cwd()
-        },
-        help: {
-            type: "boolean",
-            alias: "h"
+export const cli = () => {
+    return parseArgs({
+        strict: true,
+        allowPositionals: true,
+        options: {
+            cwd: {
+                type: "string",
+                default: process.cwd()
+            },
+            help: {
+                type: "boolean",
+                alias: "h"
+            }
         }
-    }
-});
+    });
+};
 
 export const run = async (
-    input = cli.positionals,
-    flags = cli.values
+    input = cli().positionals,
+    flags = cli().values
 ): Promise<{ exitStatus: number; stdout: string | null; stderr: Error | null }> => {
-    console.log(flags);
     if (flags.help) {
         return { exitStatus: 0, stdout: HELP, stderr: null };
     }
