@@ -1,6 +1,11 @@
 # tsconfig-to-dual-package
 
-A simple tool that add package.json({&#34;type&#34;:&#34;commonjs&#34; or &#34;module&#34;}) to TypeScript outDir for dual package.
+A Node.js dual package tool for TypeScript.
+
+You can support CommonJS and ESModules in one package via this tool.
+This tool add `package.json` which is `{ "type": "module" }` or `{ "type": "commonjs" }` based on tsconfig's `module` and `outDir` option.
+
+    tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package # add "{ourDir}/package.json"
 
 ## Install
 
