@@ -101,17 +101,17 @@ Then, You can run `tsconfig-to-dual-package` after you compile both CommonJS and
 
 As a result, you can publish both CommonJS and ES Module packages.
 
-```
-- package.json - { "type": "module" }
-- index.ts // Node.js treat this as ESModule
-- tsconfig.json // output to `module` directory
-- tsconfig.cjs.json // output to `cjs` directory
+```markdown
+- package.json          // { "type": "module" }
+- index.ts              // Node.js treat this as ESModule
+- tsconfig.json         // output to `module` directory
+- tsconfig.cjs.json     // output to `cjs` directory
 - cjs/
-    - package.json - { "type": "commonjs" }
-    - index.js  // Node.js treat it as CommonJS module
+    - package.json      // { "type": "commonjs" }
+    - index.js          // Node.js treat it as CommonJS module
 - module/
-    - package.json - { "type": "module" }
-    - index.js // Node.js treat it as ESModule
+    - package.json      // { "type": "module" }
+    - index.js          // Node.js treat it as ESModule
 ```
 
 For more details, please see [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages) in Node.js official document.
