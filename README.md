@@ -237,9 +237,9 @@ Also, Node.js documentation describe this behavior as follows
   - Create `tsconfig.cjs.json` and set it to use `module: "commonjs"`
   - Add `tsconfig-to-dual-package` to build script
     - `"build": "tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package"`
-  - Add `main`/`types`(for backward compatibility)/`files`/`exports` fields to `package.json`
+  - Add `"main"`/`"types"`(for backward compatibility)/`"files"`/`"exports"` fields to `package.json`
     - `"files": ["lib/", "module/"]` (lib/ = cjs, module/ = esm)
-    - `main`/`types`/`exports`
+    - `"main"`/`"types"`/`"exports"`
     ```json
     {
       "main": "./lib/index.js",
