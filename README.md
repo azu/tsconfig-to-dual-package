@@ -146,7 +146,7 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
 - If you want to support Node.js dual packages in one package.json, you need to separate `.mjs` and `.cjs`.
 
 As a result, TypeScript and Node.js ESM support is conflicting.
-It is hard that you can support dual pakcage with same `.js` extension.
+It is hard that you can support dual package with same `.js` extension.
 
 Off curse, you can use [tsc-multi](https://www.npmjs.com/package/tsc-multi) or [Packemon](https://packemon.dev/) to support dual packages.
 However, These are build tools and I want to use TypeScript compiler(`tsc`) directly.
