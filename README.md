@@ -18,7 +18,7 @@ Install with [npm](https://www.npmjs.com/):
     npm install tsconfig-to-dual-package --save-dev
 
 Requirements: This tool depended on `typescript` package for parsing `tsconfig.json` file.
-It means that You need to install `typescript` as dependency in your project.
+It means that You need to install `typescript` as devDependencies in your project.
 
 - PeerDependency:
   - `typescript`: `*` (any version)
