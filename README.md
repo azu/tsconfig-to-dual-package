@@ -22,6 +22,7 @@ It means that You need to install `typescript` as devDependencies in your projec
 
 - PeerDependency:
   - `typescript`: `*` (any version)
+- Node.js 16+
 
 ## Usage
 
