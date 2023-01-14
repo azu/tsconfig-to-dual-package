@@ -134,6 +134,7 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
   - Work on CJS: https://github.com/azu/events-to-async/pull/4
   - Work on ESM: https://github.com/azu/eventmit-module-env
   - Work on Deno: https://github.com/azu/eventmit-deno-env
+  - Work on Browser: https://codesandbox.io/s/determined-poitras-yll61f?file=/index.html
 
 ## Changelog
 
