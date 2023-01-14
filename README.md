@@ -223,6 +223,7 @@ Also, Node.js documentation describe this behavior as follows
 
 - You need to run `tsconfig-to-dual-package` after `tsc` compile
 - This copied `package.json` approach may affect path finding for `package.json` like [read-pkg-up](https://github.com/sindresorhus/read-pkg-up)
+- [Dual package hazard](https://nodejs.org/api/packages.html#dual-package-hazard) - I recommend that you should not use this approach for stateful package.
 
 ## FAQ
 
