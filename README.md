@@ -143,6 +143,8 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
   - Work on ESM: https://github.com/azu/eventmit-module-env
   - Work on Deno: https://github.com/azu/eventmit-deno-env
   - Work on Browser: https://codesandbox.io/s/determined-poitras-yll61f?file=/index.html
+- [safe-marked](https://github.com/azu/safe-marked)
+  - Migraion PR: [feat: Support CJS and ESM as dual package by azu · Pull Request #58 · azu/safe-marked](https://github.com/azu/safe-marked/pull/58)
 
 ## Motivation
 
