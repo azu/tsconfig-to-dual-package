@@ -43,7 +43,7 @@ It means that You need to install `typescript` as devDependencies in your projec
 This tool adds `package.json` to tsconfig's `outDir` for dual package.
 Each generated `package.json` has `type` field that is `commonjs` or `module`.
 
-Example: Your project `package.json` is following:
+For Example, Your project `package.json` is following:
 
 ```json5
 {
