@@ -206,6 +206,20 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 
 - [ ] Need to get Node.js Official document about this mechanism
 
+**Pros**
+
+- You can use TypeScript compiler(`tsc`) directly
+
+**Cons**
+
+- You need to run `tsconfig-to-dual-package` after `tsc` compile
+- This copied `package.json` approach may affect path finding for `package.json` like [read-pkg-up](https://github.com/sindresorhus/read-pkg-up)
+
+## FAQ
+
+### What should I do support dual package?
+
+-  [ ] Write example
 
 ## References
 
@@ -213,10 +227,10 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 - [Improve documentation on Dual Module Packages · Issue #34515 · nodejs/node](https://github.com/nodejs/node/issues/34515#issuecomment-664209714)
 - [rimraf/fixup.sh at v4 · isaacs/rimraf](https://github.com/isaacs/rimraf/blob/08bbb06a8077366dfcfccb4e6b77d654ddc0891f/fixup.sh)
 
-
 ## Related
 
 - [publint](https://publint.dev/): Lint your `exports` field in `package.json`
+- [isaacs/rimraf: A `rm -rf` util for nodejs](https://github.com/isaacs/rimraf): use same approach
 
 ## Changelog
 
