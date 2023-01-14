@@ -152,7 +152,7 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
 
 ## Motivation
 
-- TypeScript disallow change file extension of generated files from `.ts` by Design
+- TypeScript disallow to change file extension of generated files from `.ts` by Design
   - [Feature Request: allow change file extension of generated files from `.ts` · Issue #49462 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/49462)
   - [allow voluntary .ts suffix for import paths · Issue #37582 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/37582)
   - [bug(esm): TypeScript is not an ECMAScript superset post-ES2015 · Issue #50501 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/50501)
