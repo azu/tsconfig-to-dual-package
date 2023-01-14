@@ -16,7 +16,7 @@ const HELP = `
       $ tsconfig-to-dual-package ./config/tsconfig.json
 
 `;
-export const cli = () => {
+export const createCli = () => {
     return parseArgs({
         strict: true,
         allowPositionals: true,
@@ -34,15 +34,14 @@ export const cli = () => {
 };
 
 export const run = async (
-    input = cli().positionals,
-    flags = cli().values
+    cli = createCli()
 ): Promise<{ exitStatus: number; stdout: string | null; stderr: Error | null }> => {
-    if (flags.help) {
+    if (cli.values.help) {
         return { exitStatus: 0, stdout: HELP, stderr: null };
     }
     await tsconfigToDualPackages({
-        targetTsConfigFilePaths: input,
-        cwd: flags.cwd ?? process.cwd()
+        targetTsConfigFilePaths: cli.positionals,
+        cwd: cli.values.cwd ?? process.cwd()
     });
     return {
         stdout: null,

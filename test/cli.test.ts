@@ -39,10 +39,13 @@ describe("Snapshot testing", () => {
                 const options = fs.existsSync(path.join(fixtureDir, "options.json"))
                     ? JSON.parse(fs.readFileSync(path.join(fixtureDir, "options.json"), "utf-8"))
                     : {};
-                result = await run(options.input ? options.input : [], {
-                    ...options.flags,
-                    cwd: fixtureDir,
-                    help: false
+                result = await run({
+                    positionals: options.input,
+                    values: {
+                        ...options.flags,
+                        cwd: fixtureDir,
+                        help: false
+                    }
                 });
             } catch (e) {
                 console.log(e);
