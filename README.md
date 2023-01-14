@@ -63,7 +63,7 @@ For Example, Your project `package.json` is following:
 }
 ```
 
-and This project has `tsconfig.json` and `tsconfig.cjs.json`:
+and Your project has `tsconfig.json` and `tsconfig.cjs.json`:
 
 `tsconfig.json`: for ES Module
 
