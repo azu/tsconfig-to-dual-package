@@ -155,7 +155,7 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
 As a result, TypeScript and Node.js ESM support is conflicting.
 It is hard that you can support dual package with same `.js` extension.
 
-Off curse, you can use [tsc-multi](https://www.npmjs.com/package/tsc-multi) or [Packemon](https://packemon.dev/) to support dual packages.
+Of course, you can use [tsc-multi](https://www.npmjs.com/package/tsc-multi) or [Packemon](https://packemon.dev/) to support dual packages.
 However, These are build tools. I want to use TypeScript compiler(`tsc`) directly.
 
 `tsconfig-to-dual-package` do not touch TypeScript compiler(`tsc`) process.
