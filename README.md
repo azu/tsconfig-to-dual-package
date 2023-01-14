@@ -256,13 +256,18 @@ Also, Node.js documentation describe this behavior as follows
     }
     ```
   - Check Check Check
-    - [`npx publint`](https://github.com/bluwy/publint) is helpful
-    - [dependency-check@5](https://github.com/dependency-check-team/dependency-check/releases) is useful
+    - Lint
+      - [`npx publint`](https://github.com/bluwy/publint) is helpful
+      - [dependency-check@5](https://github.com/dependency-check-team/dependency-check/releases) is useful
+    - Test
+      - use `ts-node/esm` instead of `ts-node` for testing
+      - https://github.com/TypeStrong/ts-node#node-flags-and-other-tools
   - Publish!
     - `npm publish`
   - After Check!
     - [publint](https://publint.dev/)
     - Load test via require/import 
+    - 
 
 ## References
 
