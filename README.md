@@ -41,16 +41,18 @@ Each generated `package.json` has `type` field that is `commonjs` or `module`.
 
 Example: Your project `package.json` is following:
 
-```json
+```json5
 {
   "name": "my-package",
   "version": "1.0.0",
   "type": "module",
   "main": "lib/index.js",
-  "module": "module/index.mjs",
+  "module": "module/index.js",
+  // Note: Normally same .js extension can not be used as dual package
+  //      but this tool add custom `package.json` to each outDir(=lib/, module/) and resolve it.
   "exports": {
     ".": {
-      "import": "./module/index.mjs",
+      "import": "./module/index.js",
       "require": "./lib/index.js"
     }
   }
