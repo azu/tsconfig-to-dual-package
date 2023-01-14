@@ -112,7 +112,7 @@ Then, You can run `tsconfig-to-dual-package` after you compile both CommonJS and
 
 `tsconfig-to-dual-package` command adds `package.json` to `module` and `cjs` directory.
 
-As a result, you can publish both CommonJS and ES Module packages.
+As a result, you can publish both CommonJS and ESModule in a single package. It is called [dual package](https://nodejs.org/api/packages.html#dual-commonjses-module-packages).
 
 ```markdown
 - package.json          // { "type": "module" }
