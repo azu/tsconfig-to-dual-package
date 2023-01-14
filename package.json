@@ -23,15 +23,15 @@
   "license": "MIT",
   "author": "azu",
   "sideEffects": false,
-  "main": "cjs/tsconfig-to-dual-package.js",
-  "module": "esm/tsconfig-to-dual-package.js",
-  "types": "esm/tsconfig-to-dual-package.d.ts",
+  "main": "lib/tsconfig-to-dual-package.js",
+  "module": "module/tsconfig-to-dual-package.js",
+  "types": "module/tsconfig-to-dual-package.d.ts",
   "exports": {
     ".": {
-      "types": "./esm/tsconfig-to-dual-package.d.ts",
-      "import": "./esm/tsconfig-to-dual-package.js",
-      "require": "./cjs/tsconfig-to-dual-package.js",
-      "default": "./esm/tsconfig-to-dual-package.js"
+      "types": "./module/tsconfig-to-dual-package.d.ts",
+      "import": "./module/tsconfig-to-dual-package.js",
+      "require": "./lib/tsconfig-to-dual-package.js",
+      "default": "./module/tsconfig-to-dual-package.js"
     },
     "./package.json": "./package.json"
   },
