@@ -26,6 +26,9 @@
   "main": "lib/tsconfig-to-dual-package.js",
   "module": "module/tsconfig-to-dual-package.js",
   "types": "module/tsconfig-to-dual-package.d.ts",
+  "bin": {
+    "tsconfig-to-dual-package": "bin/cmd.mjs"
+  },
   "exports": {
     ".": {
       "types": "./module/tsconfig-to-dual-package.d.ts",
