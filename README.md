@@ -151,7 +151,7 @@ It is hard that you can support dual pakcage with same `.js` extension.
 Off curse, you can use [tsc-multi](https://www.npmjs.com/package/tsc-multi) or [Packemon](https://packemon.dev/) to support dual packages.
 However, These are build tools and I want to use TypeScript compiler(`tsc`) directly.
 
-`tsconfig-to-dual-package` do not touch TypeScript compiler(`tsc`) processing.
+`tsconfig-to-dual-package` do not touch TypeScript compiler(`tsc`) process.
 It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }) to `outDir` for each tsconfig.json after `tsc` compile source codes.
 
 [@aduh95](https://github.com/aduh95) describe the mechanism in <https://github.com/nodejs/node/issues/34515#issuecomment-664209714>
