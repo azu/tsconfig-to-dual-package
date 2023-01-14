@@ -136,12 +136,6 @@ This tool copy almost fields from `package.json` to generated `{outDir}/package.
 However, it does not copy `main`, `module`, `exports`, `types` fields because it points invalid file path.
 It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
 
-## References
-
-- [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
-- [Improve documentation on Dual Module Packages · Issue #34515 · nodejs/node](https://github.com/nodejs/node/issues/34515#issuecomment-664209714)
-- [rimraf/fixup.sh at v4 · isaacs/rimraf](https://github.com/isaacs/rimraf/blob/08bbb06a8077366dfcfccb4e6b77d654ddc0891f/fixup.sh)
-
 ## Used by
 
 - [eventmit](https://github.com/azu/eventmit)
@@ -211,6 +205,18 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 
 
 - [ ] Need to get Node.js Official document about this mechanism
+
+
+## References
+
+- [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
+- [Improve documentation on Dual Module Packages · Issue #34515 · nodejs/node](https://github.com/nodejs/node/issues/34515#issuecomment-664209714)
+- [rimraf/fixup.sh at v4 · isaacs/rimraf](https://github.com/isaacs/rimraf/blob/08bbb06a8077366dfcfccb4e6b77d654ddc0891f/fixup.sh)
+
+
+## Related
+
+- [publint](https://publint.dev/): Lint your `exports` field in `package.json`
 
 ## Changelog
 
