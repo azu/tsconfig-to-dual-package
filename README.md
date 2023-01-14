@@ -130,7 +130,10 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
 
 ## Used by
 
-- [ ] TODO
+- [eventmit](https://github.com/azu/eventmit)
+  - Work on CJS: https://github.com/azu/events-to-async/pull/4
+  - Work on ESM: https://github.com/azu/eventmit-module-env
+  - Work on Deno: https://github.com/azu/eventmit-deno-env
 
 ## Changelog
 
