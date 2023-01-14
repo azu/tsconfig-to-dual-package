@@ -116,6 +116,7 @@ As a result, you can publish both CommonJS and ES Module packages.
 
 For more details, please see [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages) in Node.js official document.
 
+
 ## Limitation
 
 This tool copy almost fields from `package.json` to generated `{outDir}/package.json`.
@@ -135,6 +136,68 @@ It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
   - Work on ESM: https://github.com/azu/eventmit-module-env
   - Work on Deno: https://github.com/azu/eventmit-deno-env
   - Work on Browser: https://codesandbox.io/s/determined-poitras-yll61f?file=/index.html
+
+## Motivation
+
+- TypeScript disallow change file extension of generated files from `.ts` by Design
+  - [Feature Request: allow change file extension of generated files from `.ts` · Issue #49462 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/49462)
+  - [allow voluntary .ts suffix for import paths · Issue #37582 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/37582)
+  - [bug(esm): TypeScript is not an ECMAScript superset post-ES2015 · Issue #50501 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/50501)
+- If you want to support Node.js dual packages in one package.json, you need to separate `.mjs` and `.cjs`.
+
+As a result, TypeScript and Node.js ESM support is conflicting.
+It is hard that you can support dual pakcage with same `.js` extension.
+
+Off curse, you can use [tsc-multi](https://www.npmjs.com/package/tsc-multi) or [Packemon](https://packemon.dev/) to support dual packages.
+However, These are build tools and I want to use TypeScript compiler(`tsc`) directly.
+
+`tsconfig-to-dual-package` do not touch TypeScript compiler(`tsc`) processing.
+It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }) to `outDir` for each tsconfig.json after `tsc` compile source codes.
+
+[@aduh95](https://github.com/aduh95) describe the mechanism in <https://github.com/nodejs/node/issues/34515#issuecomment-664209714>
+
+> For reference, the `library-package/package.json` contains:
+>
+> ```json
+> {
+> 	"name": "library-package",
+> 	"version": "1.0.0",
+> 	"main": "./index-cjs.js",
+> 	"exports": {
+> 		"import": "./index-esm.js",
+> 		"require": "./index-cjs.js"
+> 	},
+> 	"type": "module"
+> }
+> ```
+>
+> Setting `"type": "module"` makes Node.js interpret all `.js` files as ESM, including `index-cjs.js`. When you remove it, all `.js` files will be interpreted as CJS, including `index-esm.js`. If you want to support both with `.js` extension, you should create two subfolders:
+>
+> ```shell
+> $ mkdir ./cjs ./esm
+> $ echo '{"type":"commonjs"}' > cjs/package.json
+> $ echo '{"type":"module"}' > esm/package.json
+> $ git mv index-cjs.js cjs/index.js
+> $ git mv index-esm.js esm/index.js
+> ```
+>
+> And then have your package exports point to those subfolders:
+>
+> ```json
+> {
+> 	"name": "library-package",
+> 	"version": "1.0.0",
+> 	"main": "./cjs/index.js",
+> 	"exports": {
+> 		"import": "./esm/index.js",
+> 		"require": "./cjs/index.js"
+> 	},
+> 	"type": "module"
+> }
+> ```
+
+
+- [ ] Need to get Node.js Official document about this mechanism
 
 ## Changelog
 
