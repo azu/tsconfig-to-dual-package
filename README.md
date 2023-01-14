@@ -116,6 +116,12 @@ As a result, you can publish both CommonJS and ES Module packages.
 
 For more details, please see [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages) in Node.js official document.
 
+## Limitation
+
+This tool copy almost fields from `package.json` to generated `{outDir}/package.json`.
+However, it does not copy `main`, `module`, `exports`, `types` fields because it points invalid file path.
+It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
+
 ## References
 
 - [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
