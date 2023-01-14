@@ -1,0 +1,7 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "THIS IS APP",
+  "homepage": "https://example.test",
+  "type": "module"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "THIS IS APP",
+  "homepage": "https://example.test",
+  "main": "./cjs/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./module/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  }
+}

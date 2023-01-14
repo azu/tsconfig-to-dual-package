@@ -45,10 +45,16 @@ export const findTsConfig = async ({
         });
 };
 export const createModuleTypePackage = async ({ cwd, type }: { cwd: string; type: "module" | "commonjs" }) => {
+    // if the field has relative path, it should not be included in generated package.json
+    // because it is different relative path from the package.json
+    // https://docs.npmjs.com/cli/v9/configuring-npm/package-json
+    // https://nodejs.org/api/packages.html#community-conditions-definitions
+    const OMIT_FIELDS = ["main", "module", "browser", "types", "exports"];
     try {
         const basePkg = JSON.parse(await fs.readFile(path.resolve(cwd, "package.json"), "utf-8"));
+        const filteredPkg = Object.fromEntries(Object.entries(basePkg).filter(([key]) => !OMIT_FIELDS.includes(key)));
         return {
-            ...basePkg,
+            ...filteredPkg,
             type
         };
     } catch (e) {
