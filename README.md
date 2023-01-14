@@ -98,10 +98,12 @@ and This project has `tsconfig.json` and `tsconfig.cjs.json`:
 
 Then, You can run `tsconfig-to-dual-package` after you compile both CommonJS and ES Module with following command:
 
-```json6
+```json5
+{
   "scripts": {
     "build": "tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package",
   }
+}
 ```
 
 `tsconfig-to-dual-package` command adds `package.json` to `module` and `cjs` directory.
