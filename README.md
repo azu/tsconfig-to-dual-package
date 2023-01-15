@@ -44,6 +44,10 @@ It means that You need to install `typescript` as devDependencies in your projec
 This tool adds `package.json` to tsconfig's `outDir` for dual package.
 Each generated `package.json` has `type` field that is `commonjs` or `module`.
 
+You can see example repository in following:
+
+- [tsconfig-to-dual-package-example](https://github.com/azu/tsconfig-to-dual-package-example)
+
 For Example, Your project `package.json` is following:
 
 ```json5
@@ -51,20 +55,23 @@ For Example, Your project `package.json` is following:
   "name": "my-package",
   "version": "1.0.0",
   "type": "module",
-  "main": "lib/index.js",
-  "module": "module/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./module/index.js",
   // Note: Normally same .js extension can not be used as dual package
   //      but this tool add custom `package.json` to each outDir(=lib/, module/) and resolve it.
   "exports": {
     ".": {
+      "types": "./module/index.d.ts",
       "import": "./module/index.js",
-      "require": "./lib/index.js"
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
     }
   }
 }
 ```
 
-and Your project has `tsconfig.json` and `tsconfig.cjs.json`:
+and The project has `tsconfig.json` and `tsconfig.cjs.json`:
 
 `tsconfig.json`: for ES Module
 
@@ -129,6 +136,9 @@ As a result, you can publish both CommonJS and ESModule in a single package. It 
 ```
 
 For more details, please see [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages) in Node.js official document.
+
+- Example: [tsconfig-to-dual-package-example](https://github.com/azu/tsconfig-to-dual-package-example)
+  - Distribution files: https://www.npmjs.com/package/@azu/tsconfig-to-dual-package-example?activeTab=explore
 
 
 ## Limitation
@@ -231,15 +241,16 @@ Also, Node.js documentation describe this behavior as follows
 
 ### What should I do support dual package?
 
--  [ ] Write example 
-- Steps
+- Example repository: [tsconfig-to-dual-package-example](https://github.com/azu/tsconfig-to-dual-package-example)
+- Pull Request: [feat: support dual package by azu · Pull Request #2 · azu/tsconfig-to-dual-package-example](https://github.com/azu/tsconfig-to-dual-package-example/pull/2)
+- Steps:
   - Install `tsconfig-to-dual-package`: `npm install --save-dev tsconfig-to-dual-package`
   - Add `"type": "module"` to package.json via `npm pkg set type=module`
   - Add `tsconfig.json` and `tsconfig.cjs.json`
   - Create `tsconfig.json` and set it to use `module: "esnext"`
   - Create `tsconfig.cjs.json` and set it to use `module: "commonjs"`
   - Add `tsconfig-to-dual-package` to build script
-    - `"build": "tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package"`
+    - `"build": "tsc -p ./tsconfig.json && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package"`
   - Add `"main"`/`"types"`(for backward compatibility)/`"files"`/`"exports"` fields to `package.json`
     - `"files": ["lib/", "module/"]` (lib/ = cjs, module/ = esm)
     - `"main"`/`"types"`/`"exports"`
@@ -270,7 +281,6 @@ Also, Node.js documentation describe this behavior as follows
   - After Check!
     - [publint](https://publint.dev/)
     - Load test via require/import 
-    - 
 
 ## References
 
