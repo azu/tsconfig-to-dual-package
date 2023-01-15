@@ -318,6 +318,7 @@ Also, Node.js documentation describe this behavior as follows
 - [why is there a package.json export for `package.json`? · Issue #1 · tsmodule/tsmodule](https://github.com/tsmodule/tsmodule/issues/1#issuecomment-1065500448)
   - Why add `"./package.json": "./package.json"` 
   - [Special treatment for package.json resolution and exports? · Issue #33460 · nodejs/node](https://github.com/nodejs/node/issues/33460)
+- [frehner/modern-guide-to-packaging-js-library: A guide to help ensure your JavaScript library is the most compatible, fast, and efficient library you can make.](https://github.com/frehner/modern-guide-to-packaging-js-library)
 
 ## Related
 
