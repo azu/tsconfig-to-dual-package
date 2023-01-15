@@ -1,6 +1,6 @@
 {
   "name": "tsconfig-to-dual-package",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "A simple tool that add package.json({\"type\":\"commonjs\"/\"module\"}) to TypeScript outDir for dual package.",
   "type": "module",
   "keywords": [
