@@ -229,6 +229,7 @@ Also, Node.js documentation describe this behavior as follows
 **Pros**
 
 - You can use TypeScript compiler(`tsc`) directly
+  - No additional bundler, transpiler, build tool
 
 **Cons**
 
