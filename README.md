@@ -163,7 +163,7 @@ It defined in [OMIT_FIELDS](https://github.com/search?q=repo%3Aazu%2Ftsconfig-to
   - [Feature Request: allow change file extension of generated files from `.ts` · Issue #49462 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/49462)
   - [allow voluntary .ts suffix for import paths · Issue #37582 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/37582)
   - [bug(esm): TypeScript is not an ECMAScript superset post-ES2015 · Issue #50501 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/50501)
-- If you want to support Node.js dual packages in one package.json, you need to separate `.mjs` and `.cjs`.
+- Node.js require separate `.mjs` and `.cjs` if you need to get dual package in one package
 
 As a result, TypeScript and Node.js ESM support is conflicting.
 It is hard that you can support dual package with same `.js` extension.
