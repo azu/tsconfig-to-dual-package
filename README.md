@@ -231,7 +231,8 @@ Also, Node.js documentation describe this behavior as follows
 > node my-app.js # Runs as ES module
 > ```
 > If the nearest parent package.json lacks a "type" field, or contains "type": "commonjs", .js files are treated as [CommonJS](https://nodejs.org/api/modules.html). If the volume root is reached and no package.json is found, .js files are treated as [CommonJS](https://nodejs.org/api/modules.html).  
-> https://nodejs.org/api/packages.html#type
+> 
+> -- https://nodejs.org/api/packages.html#type
 
 ## Pros and Cons
 
