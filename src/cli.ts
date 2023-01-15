@@ -1,5 +1,5 @@
 import { parseArgs } from "node:util";
-import { tsconfigToDualPackages } from "./tsconfig-to-dual-package.js";
+import { tsconfigToDualPackages, TSConfigDualPackageOptions } from "./tsconfig-to-dual-package.js";
 
 const HELP = `
     Usage
@@ -32,17 +32,17 @@ export const createCli = () => {
         }
     });
 };
-
 export const run = async (
     cli = createCli()
 ): Promise<{ exitStatus: number; stdout: string | null; stderr: Error | null }> => {
     if (cli.values.help) {
         return { exitStatus: 0, stdout: HELP, stderr: null };
     }
-    await tsconfigToDualPackages({
+    const options: TSConfigDualPackageOptions = {
         targetTsConfigFilePaths: cli.positionals,
         cwd: cli.values.cwd ?? process.cwd()
-    });
+    };
+    await tsconfigToDualPackages(options);
     return {
         stdout: null,
         stderr: null,

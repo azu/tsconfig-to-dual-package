@@ -17,13 +17,11 @@ const formatDiagnostics = (diagnostics: ts.Diagnostic[]): string => {
         .join("\n");
 };
 
-export const findTsConfig = async ({
-    targetTsConfigFilePaths,
-    cwd
-}: {
+export type TSConfigDualPackageOptions = {
     targetTsConfigFilePaths?: string[];
     cwd: string;
-}) => {
+};
+export const findTsConfig = async ({ targetTsConfigFilePaths, cwd }: TSConfigDualPackageOptions) => {
     if (targetTsConfigFilePaths && targetTsConfigFilePaths.length > 0) {
         return targetTsConfigFilePaths.map((value) => {
             return path.resolve(cwd, value);
@@ -87,13 +85,7 @@ const getModuleType = (moduleKind: ts.ModuleKind) => {
     }
     throw new Error("Non-support module kind: " + moduleKind);
 };
-export const tsconfigToDualPackages = async ({
-    targetTsConfigFilePaths,
-    cwd
-}: {
-    targetTsConfigFilePaths?: string[];
-    cwd: string;
-}) => {
+export const tsconfigToDualPackages = async ({ targetTsConfigFilePaths, cwd }: TSConfigDualPackageOptions) => {
     // search tsconfig*.json
     const tsconfigFilePaths = await findTsConfig({ targetTsConfigFilePaths, cwd });
     // load tsconfig.json
