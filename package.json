@@ -31,7 +31,10 @@
   },
   "exports": {
     ".": {
-      "types": "./module/tsconfig-to-dual-package.d.ts",
+      "types": {
+        "import": "./module/index.d.ts",
+        "require": "./lib/index.d.ts"
+      },
       "import": "./module/tsconfig-to-dual-package.js",
       "require": "./lib/tsconfig-to-dual-package.js",
       "default": "./module/tsconfig-to-dual-package.js"
