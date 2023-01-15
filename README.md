@@ -334,6 +334,7 @@ Also, Node.js documentation describe this behavior as follows
 
 - [publint](https://publint.dev/): Lint your `exports` field in `package.json`
 - [isaacs/rimraf: A `rm -rf` util for nodejs](https://github.com/isaacs/rimraf): use same approach
+- [eslint-cjs-to-esm](https://github.com/azu/eslint-cjs-to-esm): help you to migrate CJS to ESM
 
 ## Changelog
 
