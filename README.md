@@ -113,7 +113,7 @@ Then, You can run `tsconfig-to-dual-package` after you compile both CommonJS and
 ```json5
 {
   "scripts": {
-    "build": "tsc -p . && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package",
+    "build": "tsc -p ./tsconfig.json && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package",
   }
 }
 ```
