@@ -20,6 +20,8 @@ const formatDiagnostics = (diagnostics: ts.Diagnostic[]): string => {
 export type TSConfigDualPackageOptions = {
     targetTsConfigFilePaths?: string[];
     cwd: string;
+    // default: true
+    debug?: boolean;
 };
 export const findTsConfig = async ({ targetTsConfigFilePaths, cwd }: TSConfigDualPackageOptions) => {
     if (targetTsConfigFilePaths && targetTsConfigFilePaths.length > 0) {
@@ -42,7 +44,15 @@ export const findTsConfig = async ({ targetTsConfigFilePaths, cwd }: TSConfigDua
             return path.join(cwd, dirent.name);
         });
 };
-export const createModuleTypePackage = async ({ cwd, type }: { cwd: string; type: "module" | "commonjs" }) => {
+export const createModuleTypePackage = async ({
+    cwd,
+    type,
+    debug
+}: {
+    cwd: string;
+    type: "module" | "commonjs";
+    debug: boolean;
+}) => {
     // if the field has relative path, it should not be included in generated package.json
     // because it is different relative path from the package.json
     // https://docs.npmjs.com/cli/v9/configuring-npm/package-json
@@ -56,26 +66,18 @@ export const createModuleTypePackage = async ({ cwd, type }: { cwd: string; type
             type
         };
     } catch (e) {
-        console.error("Failed to create package.json", {
-            cwd,
-            type,
-            error: e
-        });
-        throw new Error("Failed to read package.json", {
+        if (debug) {
+            console.error("Failed to load package.json", {
+                cwd,
+                type,
+                error: e
+            });
+        }
+        throw new Error(`Failed to read package.json in ${cwd}`, {
             cause: e
         });
     }
 };
-
-export type RequiredTsConfigOptions = { compilerOptions: { outDir: string; module: "ESNext" } };
-export const getOutDirFromTsConfig = async (tsconfig: RequiredTsConfigOptions, tsconfigFilePath?: string) => {
-    const outDir = tsconfig?.compilerOptions?.outDir;
-    if (!outDir) {
-        throw new Error("Failed to find outDir in tsconfig.json " + tsconfigFilePath);
-    }
-    return outDir;
-};
-
 const getModuleType = (moduleKind: ts.ModuleKind) => {
     // TODO: get more better way
     if (moduleKind >= ts.ModuleKind.ES2015 && moduleKind <= ts.ModuleKind.ESNext) {
@@ -85,7 +87,8 @@ const getModuleType = (moduleKind: ts.ModuleKind) => {
     }
     throw new Error("Non-support module kind: " + moduleKind);
 };
-export const tsconfigToDualPackages = async ({ targetTsConfigFilePaths, cwd }: TSConfigDualPackageOptions) => {
+export const tsconfigToDualPackages = async ({ targetTsConfigFilePaths, cwd, debug }: TSConfigDualPackageOptions) => {
+    const debugWithDefault = debug ?? false;
     // search tsconfig*.json
     const tsconfigFilePaths = await findTsConfig({ targetTsConfigFilePaths, cwd });
     // load tsconfig.json
@@ -101,12 +104,19 @@ export const tsconfigToDualPackages = async ({ targetTsConfigFilePaths, cwd }: T
     const dualPackages = await Promise.all(
         tsconfigs.map(async ({ filePath, tsconfig }) => {
             if (tsconfig.diagnostics || !tsconfig.config) {
-                console.error(`Failed to load tsconfig: ${filePath}
+                const error = new Error(`Failed to load tsconfig: ${filePath}
 
 ${formatDiagnostics(tsconfig.diagnostics)}
 `);
+                if (debugWithDefault) {
+                    console.error({
+                        error,
+                        filePath,
+                        tsconfig
+                    });
+                }
 
-                throw new Error("Failed to parse tsconfig.json");
+                throw error;
             }
             if (!tsconfig.config.options.outDir) {
                 throw new Error(`Failed to find "outDir" option in tsconfig.json`);
@@ -118,7 +128,8 @@ ${formatDiagnostics(tsconfig.diagnostics)}
                 outDir: tsconfig.config.options.outDir,
                 pkg: await createModuleTypePackage({
                     cwd,
-                    type: getModuleType(tsconfig.config.options.module)
+                    type: getModuleType(tsconfig.config.options.module),
+                    debug: debugWithDefault
                 })
             };
         })
