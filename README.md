@@ -313,6 +313,11 @@ Also, Node.js documentation describe this behavior as follows
 - [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
 - [Improve documentation on Dual Module Packages · Issue #34515 · nodejs/node](https://github.com/nodejs/node/issues/34515#issuecomment-664209714)
 - [TypeScript: Documentation - ECMAScript Modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html)
+  - Why `types` fields at first
+  - Issue: [package.json `exports` resolution uses fallback conditions, unlike Node · Issue #50762 · microsoft/TypeScript](https://github.com/microsoft/TypeScript/issues/50762)
+- [why is there a package.json export for `package.json`? · Issue #1 · tsmodule/tsmodule](https://github.com/tsmodule/tsmodule/issues/1#issuecomment-1065500448)
+  - Why add `"./package.json": "./package.json"` 
+  - [Special treatment for package.json resolution and exports? · Issue #33460 · nodejs/node](https://github.com/nodejs/node/issues/33460)
 
 ## Related
 
