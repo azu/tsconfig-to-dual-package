@@ -7,6 +7,7 @@ const HELP = `
  
     Options
       --cwd                 [String] current working directory. Default: process.cwd()
+      --debug               [Boolean] Enable debug output
       --help                [Boolean] show help
 
     Examples
@@ -28,6 +29,10 @@ export const createCli = () => {
             help: {
                 type: "boolean",
                 alias: "h"
+            },
+            debug: {
+                type: "boolean",
+                default: false
             }
         }
     });
@@ -40,7 +45,8 @@ export const run = async (
     }
     const options: TSConfigDualPackageOptions = {
         targetTsConfigFilePaths: cli.positionals,
-        cwd: cli.values.cwd ?? process.cwd()
+        cwd: cli.values.cwd ?? process.cwd(),
+        debug: cli.values.debug
     };
     await tsconfigToDualPackages(options);
     return {

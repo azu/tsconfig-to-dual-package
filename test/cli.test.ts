@@ -44,11 +44,11 @@ describe("Snapshot testing", () => {
                     values: {
                         ...options.flags,
                         cwd: fixtureDir,
-                        help: false
+                        help: false,
+                        debug: false
                     }
                 });
             } catch (e) {
-                console.log(e);
                 assert.ok(caseName.startsWith("ng."), "ok case should not throw an error:" + normalizedTestName);
                 return;
             }
