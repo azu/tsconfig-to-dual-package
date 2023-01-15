@@ -14,7 +14,7 @@ const HELP = `
       # Find tsconfig*.json in cwd and convert to dual package
       $ tsconfig-to-dual-package
       # Convert specified tsconfig.json to dual package
-      $ tsconfig-to-dual-package ./config/tsconfig.json
+      $ tsconfig-to-dual-package ./config/tsconfig.esm.json ./config/tsconfig.cjs.json
 
 `;
 export const createCli = () => {
