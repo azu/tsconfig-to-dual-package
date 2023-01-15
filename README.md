@@ -145,7 +145,7 @@ For more details, please see [Dual CommonJS/ES module packages](https://nodejs.o
 
 This tool copy almost fields from `package.json` to generated `{outDir}/package.json`.
 However, it does not copy `main`, `module`, `exports`, `types` fields because it points invalid file path.
-It defined in [OMIT_FIELDS](OMIT_FIELDS) constant.
+It defined in [OMIT_FIELDS](https://github.com/search?q=repo%3Aazu%2Ftsconfig-to-dual-package%20OMIT_FIELDS&type=code) constant.
 
 ## Used by
 
