@@ -220,7 +220,16 @@ It just put `package.json`(`{ "type": "module" }` or `"{ "type": "commonjs" }`) 
 Also, Node.js documentation describe this behavior as follows
 
 > The nearest parent package.json is defined as the first package.json found when searching in the current folder, that folder's parent, and so on up until a node_modules folder or the volume root is reached.
-> ...
+> ```json5
+> // package.json
+> {
+>   "type": "module"
+> }
+> ```
+> ```bash
+> # In same folder as preceding package.json
+> node my-app.js # Runs as ES module
+> ```
 > If the nearest parent package.json lacks a "type" field, or contains "type": "commonjs", .js files are treated as [CommonJS](https://nodejs.org/api/modules.html). If the volume root is reached and no package.json is found, .js files are treated as [CommonJS](https://nodejs.org/api/modules.html).  
 > https://nodejs.org/api/packages.html#type
 
