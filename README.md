@@ -257,6 +257,16 @@ Also, Node.js documentation describe this behavior as follows
   - For example, a singleton and `instanceof` check for user-input may cause unexpected behavior.
   - This Dual package has a risk of loading double(`require` and `import` load separate resources).
   - Very large package may want to prevent loading double package. For example, a large dictionary included package.
+- Dual package is hard to use some API like `__diranme`, `__filename` without transpiler
+  - Normally, you can use `import.meta.url` and `new URL(..., import.meta.url)` to get `__dirname` and `__filename` in ESM.
+  - On the other hands, `import.meta.url` is disallowed syntax in CJS
+  - `import.meta` is not defined in CJS
+  - `__diraname` is not defined in ESM
+  - As a result, it is hard to use `__dirname` and `__filename` in dual package.
+  - Some package get these via Error stack trace
+    - [fwh1990/this-file: Create dynamic __dirname, __filename and require method for both ESM and CJS](https://github.com/fwh1990/this-file)
+    - [JumpLink/cross-dirname: Node.js + Gjs + Deno module that returns the current script dirname. Similar to __dirname but also works in CommonJs and ES modules.](https://github.com/JumpLink/cross-dirname)
+  - 🆘 If you know a solution about this problem, please send pull request!
 
 ## FAQ
 
