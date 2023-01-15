@@ -237,6 +237,8 @@ Also, Node.js documentation describe this behavior as follows
 - This tool copy `package.json` to `outDir`. This approach may affect path finding for `package.json` like [read-pkg-up](https://github.com/sindresorhus/read-pkg-up)
 - [Dual package hazard](https://nodejs.org/api/packages.html#dual-package-hazard) - I recommend that you should not use this approach for stateful package.
   - For example, a singleton and `instanceof` check for user-input may cause unexpected behavior.
+  - Dual package has a risk of loading double(`require` and `import` load separate resources).
+  - Very large package may want to prevent loading double package. For example, a large dictionary included package.
 
 ## FAQ
 
