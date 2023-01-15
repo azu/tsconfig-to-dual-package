@@ -62,9 +62,14 @@ For Example, Your project `package.json` is following:
   //      but this tool add custom `package.json` to each outDir(=lib/, module/) and resolve it.
   "exports": {
     ".": {
-      "types": "./module/index.d.ts",
-      "import": "./module/index.js",
-      "require": "./lib/index.js",
+      "import": {
+        "types": "./module/index.d.ts",
+        "default": "./module/index.js"
+      },
+      "require": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
+      },
       "default": "./lib/index.js"
     }
   }
@@ -273,9 +278,14 @@ Also, Node.js documentation describe this behavior as follows
       "types": "./lib/index.d.ts",
       "exports": {
         ".": {
-          "types": "./module/index.d.ts",
-          "import": "./module/index.js",
-          "require": "./lib/index.js",
+          "import": {
+            "types": "./module/index.d.ts",
+            "default": "./module/index.js"
+          },
+          "require": {
+            "types": "./lib/index.d.ts",
+            "default": "./lib/index.js"
+          },
           "default": "./module/index.js"
         },
         "./package.json": "./package.json"

@@ -31,9 +31,14 @@
   },
   "exports": {
     ".": {
-      "types": "./module/tsconfig-to-dual-package.d.ts",
-      "import": "./module/tsconfig-to-dual-package.js",
-      "require": "./lib/tsconfig-to-dual-package.js",
+      "import": {
+        "types": "./module/tsconfig-to-dual-package.d.ts",
+        "default": "./module/tsconfig-to-dual-package.js"
+      },
+      "require": {
+        "types": "./lib/tsconfig-to-dual-package.d.ts",
+        "default": "./lib/tsconfig-to-dual-package.js"
+      },
       "default": "./module/tsconfig-to-dual-package.js"
     },
     "./package.json": "./package.json"
