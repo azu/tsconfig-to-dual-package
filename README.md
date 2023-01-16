@@ -334,6 +334,15 @@ Example Result:
 
 - [refactor: migrate to dual package by azu · Pull Request #4 · azu/markdown-function](https://github.com/azu/markdown-function/pull/4)
 
+### Should I migrate to dual package?
+
+- If your package is a library, you should migrate to dual package if possible
+  - Because dual package reduce interop issues between CJS and ESM
+  - If your package is just logics, you can move to dual package
+- If your package is a Command Line Tool(CLI), you not need to migrate to dual package
+  - Because CLI is not loaded from `require` function
+  - You can move to [Pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
+
 ## References
 
 - [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
