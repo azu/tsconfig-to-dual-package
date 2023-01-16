@@ -324,6 +324,11 @@ Also, Node.js documentation describe this behavior as follows
 It is not for everyone, but I wrote a migration script for TypeScript project.
 
 - [Migration Script: Convert TypeScript project to Node.js dual package](https://gist.github.com/azu/f383ba74c80d17806badd49745ce2129)
+  - This script make almost migration automatic
+  - Use [`npm pkg`](https://docs.npmjs.com/cli/v8/commands/npm-pkg?v=true) command for change `package.json`
+  - Use [tsconfig-to-dual-package](https://github.com/azu/tsconfig-to-dual-package) to build dual package
+  - Use [eslint-cjs-to-esm](https://github.com/azu/eslint-cjs-to-esm) to migrate source code to ESM from CJS
+  - Use [publint](https://publint.dev/) to check `package.json`
 
 Example Result
 
