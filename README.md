@@ -264,6 +264,7 @@ Also, Node.js documentation describe this behavior as follows
   - `__diraname` is not defined in ESM
   - As a result, it is hard to use `__dirname` and `__filename` in dual package.
   - Some package get these via Error stack trace
+    - [bevry/filedirname: Fetch the current file and directory path, no matter your environment (Deno, Node.js, Web Browsers, ESM, CJS)](https://github.com/bevry/filedirname)
     - [fwh1990/this-file: Create dynamic __dirname, __filename and require method for both ESM and CJS](https://github.com/fwh1990/this-file)
     - [JumpLink/cross-dirname: Node.js + Gjs + Deno module that returns the current script dirname. Similar to __dirname but also works in CommonJs and ES modules.](https://github.com/JumpLink/cross-dirname)
   - 🆘 If you know a solution about this problem, please send pull request!
