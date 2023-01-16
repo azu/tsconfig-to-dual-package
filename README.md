@@ -330,7 +330,7 @@ It is not for everyone, but I wrote a migration script for TypeScript project.
   - Use [eslint-cjs-to-esm](https://github.com/azu/eslint-cjs-to-esm) to migrate source code to ESM from CJS
   - Use [publint](https://publint.dev/) to check `package.json`
 
-Example Result
+Example Result:
 
 - [refactor: migrate to dual package by azu · Pull Request #4 · azu/markdown-function](https://github.com/azu/markdown-function/pull/4)
 
