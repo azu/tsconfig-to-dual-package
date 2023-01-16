@@ -51,7 +51,7 @@ You can see example repository in following:
 
 - [tsconfig-to-dual-package-example](https://github.com/azu/tsconfig-to-dual-package-example)
 
-For Example, Your project `package.json` is following:
+For example, This project `package.json` is following:
 
 ```json5
 {
@@ -79,7 +79,7 @@ For Example, Your project `package.json` is following:
 }
 ```
 
-and The project has `tsconfig.json` and `tsconfig.cjs.json`:
+And, This project has `tsconfig.json` and `tsconfig.cjs.json`:
 
 `tsconfig.json`: for ES Module
 
