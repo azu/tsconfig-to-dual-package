@@ -319,6 +319,16 @@ Also, Node.js documentation describe this behavior as follows
     - [publint](https://publint.dev/)
     - Load test via require/import 
 
+### Is there a migration script?
+
+It is not for everyone, but I wrote a migration script for TypeScript project.
+
+- [Migration Script: Convert TypeScript project to Node.js dual package](https://gist.github.com/azu/f383ba74c80d17806badd49745ce2129)
+
+Example Result
+
+- [refactor: migrate to dual package by azu · Pull Request #4 · azu/markdown-function](https://github.com/azu/markdown-function/pull/4)
+
 ## References
 
 - [Dual CommonJS/ES module packages](https://nodejs.org/api/packages.html#dual-commonjses-module-packages)
@@ -334,8 +344,8 @@ Also, Node.js documentation describe this behavior as follows
 ## Related
 
 - [publint](https://publint.dev/): Lint your `exports` field in `package.json`
-- [isaacs/rimraf: A `rm -rf` util for nodejs](https://github.com/isaacs/rimraf): use same approach
 - [eslint-cjs-to-esm](https://github.com/azu/eslint-cjs-to-esm): help you to migrate CJS to ESM
+- [isaacs/rimraf: A `rm -rf` util for nodejs](https://github.com/isaacs/rimraf): use same approach
 
 ## Changelog
 
