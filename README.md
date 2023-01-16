@@ -258,7 +258,7 @@ Also, Node.js documentation describe this behavior as follows
   - This Dual package has a risk of loading double(`require` and `import` load separate resources).
   - Very large package may want to prevent loading double package. For example, a large dictionary included package.
 - Dual package is hard to use some API like `__diranme`, `__filename` without transpiler
-  - Normally, you can use `import.meta.url` and `new URL(..., import.meta.url)` to get `__dirname` and `__filename` in ESM.
+  - Normally, you can use [`import.meta.url` and `new URL(..., import.meta.url)`](https://github.com/nodejs/node/issues/28114) to get `__dirname` and `__filename` in ESM.
   - On the other hands, `import.meta.url` is disallowed syntax in CJS
   - `import.meta` is not defined in CJS
   - `__diraname` is not defined in ESM
