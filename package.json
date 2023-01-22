@@ -47,6 +47,9 @@
     "lib": "lib",
     "test": "test"
   },
+  "engines": {
+    "node": ">=18.3.0 || >=16.17.0"
+  },
   "files": [
     "bin/",
     "lib/",
