@@ -110,6 +110,11 @@ const getModuleType = ({ packageType, moduleKind }: ModuleTypeOption) => {
     if (moduleKind >= ts.ModuleKind.ES2015 && moduleKind <= ts.ModuleKind.ESNext) {
         return "module";
     } else if (moduleKind >= ts.ModuleKind.Node16 && moduleKind <= ts.ModuleKind.NodeNext) {
+        // use package.json's type
+        // if type is not set, use commonjs
+        // > The emitted JavaScript uses either CommonJS or ES2020 output depending on the file extension and the value of the type setting in the nearest package.json. Module resolution also works differently.
+        // https://www.typescriptlang.org/tsconfig#node16nodenext-nightly-builds
+        // https://www.typescriptlang.org/docs/handbook/esm-node.html
         return packageType ?? "commonjs";
     } else if (moduleKind === ts.ModuleKind.CommonJS) {
         return "commonjs";
