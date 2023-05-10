@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "module": "Node16",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "newLine": "LF",
+    "outDir": "./default/",
+    "target": "ES2018",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "**/*"
+  ]
+}
