@@ -23,6 +23,27 @@ export type TSConfigDualPackageOptions = {
     // default: true
     debug?: boolean;
 };
+export const findNearestPackageJson = async ({
+    cwd
+}: TSConfigDualPackageOptions): Promise<{
+    type?: "module" | "commonjs";
+}> => {
+    // cwd is root, throw and error
+    if (cwd === path.dirname(cwd)) {
+        throw new Error("Failed to find package.json");
+    }
+    const packageJsonFilePath = path.join(cwd, "package.json");
+    const exists = await fs.stat(packageJsonFilePath).catch(() => false);
+    if (!exists) {
+        return findNearestPackageJson({
+            cwd: path.dirname(cwd)
+        });
+    }
+    return JSON.parse(await fs.readFile(packageJsonFilePath, "utf-8")) as {
+        type?: "module" | "commonjs";
+    };
+};
+
 export const findTsConfig = async ({ targetTsConfigFilePaths, cwd }: TSConfigDualPackageOptions) => {
     if (targetTsConfigFilePaths && targetTsConfigFilePaths.length > 0) {
         return targetTsConfigFilePaths.map((value) => {
@@ -78,12 +99,18 @@ export const createModuleTypePackage = async ({
         });
     }
 };
-const getModuleType = (moduleKind: ts.ModuleKind) => {
+
+type ModuleTypeOption = {
+    packageType?: "module" | "commonjs";
+    moduleKind: ts.ModuleKind;
+};
+
+const getModuleType = ({ packageType, moduleKind }: ModuleTypeOption) => {
     // TODO: get more better way
     if (moduleKind >= ts.ModuleKind.ES2015 && moduleKind <= ts.ModuleKind.ESNext) {
         return "module";
     } else if (moduleKind >= ts.ModuleKind.Node16 && moduleKind <= ts.ModuleKind.NodeNext) {
-        return "module";
+        return packageType ?? "commonjs";
     } else if (moduleKind === ts.ModuleKind.CommonJS) {
         return "commonjs";
     }
@@ -91,6 +118,7 @@ const getModuleType = (moduleKind: ts.ModuleKind) => {
 };
 export const tsconfigToDualPackages = async ({ targetTsConfigFilePaths, cwd, debug }: TSConfigDualPackageOptions) => {
     const debugWithDefault = debug ?? false;
+    const packageJson = await findNearestPackageJson({ cwd });
     // search tsconfig*.json
     const tsconfigFilePaths = await findTsConfig({ targetTsConfigFilePaths, cwd });
     // load tsconfig.json
@@ -130,7 +158,10 @@ ${formatDiagnostics(tsconfig.diagnostics)}
                 outDir: tsconfig.config.options.outDir,
                 pkg: await createModuleTypePackage({
                     cwd,
-                    type: getModuleType(tsconfig.config.options.module),
+                    type: getModuleType({
+                        packageType: packageJson.type,
+                        moduleKind: tsconfig.config.options.module
+                    }),
                     debug: debugWithDefault
                 })
             };

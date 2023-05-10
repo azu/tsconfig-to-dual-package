@@ -1,6 +1,6 @@
 cjs/
   package.json
-esm/
+default/
   package.json
 index.ts
 package.json

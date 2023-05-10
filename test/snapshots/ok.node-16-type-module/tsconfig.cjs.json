@@ -1,11 +1,12 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     /* Basic Options */
-    "module": "Node16",
-    "moduleResolution": "NodeNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "newLine": "LF",
-    "outDir": "./esm/",
+    "outDir": "./cjs/",
     "target": "ES2018",
     "sourceMap": true,
     "declaration": true,
