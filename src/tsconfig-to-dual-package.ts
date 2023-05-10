@@ -82,6 +82,8 @@ const getModuleType = (moduleKind: ts.ModuleKind) => {
     // TODO: get more better way
     if (moduleKind >= ts.ModuleKind.ES2015 && moduleKind <= ts.ModuleKind.ESNext) {
         return "module";
+    } else if (moduleKind >= ts.ModuleKind.Node16 && moduleKind <= ts.ModuleKind.NodeNext) {
+        return "module";
     } else if (moduleKind === ts.ModuleKind.CommonJS) {
         return "commonjs";
     }
