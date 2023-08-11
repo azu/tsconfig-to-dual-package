@@ -317,6 +317,7 @@ Also, Node.js documentation describe this behavior as follows
     - `npm publish`
   - After Check!
     - [publint](https://publint.dev/)
+    - <https://arethetypeswrong.github.io/>
     - Load test via require/import 
 
 ### Is there a migration script?
